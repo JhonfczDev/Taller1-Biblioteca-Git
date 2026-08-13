@@ -58,9 +58,40 @@ public class Main {
         
         return null;
     }
+    
+    static void updateClient(){
+        
+        String id="";
+        Client client;
+        
+        System.out.println("          __________EDITAR CLIENTE__________");
+        System.out.print("-Ingrese la identificacion del cliente que desea modificar: "); id = sc.nextLine();
+        
+        client = searchClient(id);
+        
+        if(client == null){
+            System.out.println("\n-El cliente ingresado no se encuentra registrado.");
+            
+            return;
+        }
+        else{
+            System.out.println("\n-El cliente se encuentra registrado, ingrese los nuevos datos: ");
+            
+            System.out.print("-Ingrese la identificacion: "); client.setId(sc.nextLine());
+            System.out.print("-Ingrese el nombre: "); client.setName(sc.nextLine());
+            System.out.print("-Ingrese el numero de telefono: "); client.setPhoneNumber(sc.nextLine());
+            System.out.print("-Ingrese el email: "); client.setEmail(sc.nextLine());
+            
+            System.out.println("Cliente modificado con exito.");
+            
+        }
+        
+    }
 
     public static void main(String[] args) {
         createClient();
+        readClient();
+        updateClient();
         readClient();
     }
 }

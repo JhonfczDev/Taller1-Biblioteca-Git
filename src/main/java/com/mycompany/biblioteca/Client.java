@@ -5,11 +5,7 @@ public class Client extends Person{
 
     public Client() {
     }
-
-    public Client(String email) {
-        this.email = email;
-    }
-
+    
     public String getEmail() {
         return email;
     }
@@ -20,4 +16,8 @@ public class Client extends Person{
     
     
     
-}
+    
+    }
+
+    
+
