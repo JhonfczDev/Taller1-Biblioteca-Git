@@ -45,9 +45,19 @@ public class Main {
         
         System.out.println("          __________CONSULTAR CLIENTES__________");
         System.out.println("-Listado de clientes registrados:\n");
-        System.out.println(resultado);
-        
+        System.out.println(resultado);  
     };
+    
+    static Client searchClient(String id){
+        for (Client client : clientes) {
+            if(client.getId().equals(id)){
+                
+                return client;
+            }
+        }
+        
+        return null;
+    }
 
     public static void main(String[] args) {
         createClient();
