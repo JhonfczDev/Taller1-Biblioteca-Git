@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    static ArrayList<Client> clientes = new ArrayList<>(); 
+    static ArrayList<Client> clients = new ArrayList<>(); 
     static Scanner sc = new Scanner(System.in);
     
     static void createClient(){
@@ -21,7 +21,7 @@ public class Main {
         
         System.out.print("-Ingrese el email: "); newClient.setEmail(sc.nextLine());
         
-        clientes.add(newClient);
+        clients.add(newClient);
         System.out.println("\n-Cliente agregado exitosamente.\n");
         
         return;
@@ -32,7 +32,7 @@ public class Main {
         String resultado=" ";
         int ind=1;
         
-        for (Client client : clientes) {
+        for (Client client : clients) {
             resultado += "CLIENTE "+ind+".\n" 
                     +"\n-Identificacion: "+client.getId()
                     +"\n-Nombre: "+client.getName()
@@ -45,11 +45,17 @@ public class Main {
         
         System.out.println("          __________CONSULTAR CLIENTES__________");
         System.out.println("-Listado de clientes registrados:\n");
-        System.out.println(resultado);  
+        if(resultado.equals(" ")){
+            System.out.println("-No hay clientes registrados.");
+        }
+        else{
+            System.out.println(resultado);  
+        }
+        
     };
     
     static Client searchClient(String id){
-        for (Client client : clientes) {
+        for (Client client : clients) {
             if(client.getId().equals(id)){
                 
                 return client;
@@ -87,11 +93,51 @@ public class Main {
         }
         
     }
+    
+    static void deleteClient(){
+        
+        Client client;
+        String id;
+        
+        System.out.println("          __________ELIMINAR CLIENTE__________");
+        System.out.print("-Ingrese la identificacion del cliente que desea eliminar: "); id = sc.nextLine();
+        
+        client = searchClient(id);
+        
+        if(client == null){
+            System.out.println("\n-El cliente ingresado no se encuentra registrado.");
+            
+            return;
+        }
+        else{
+            String option;
+            
+            System.out.println("\n-El cliente se encuentra registrado, esta seguro de continuar?\n1-Si\n2.No");
+            System.out.print("*"); option = sc.nextLine();
+            
+            switch(option){
+                case "1":
+                    
+                    clients.remove(client); System.out.println("El cliente ha sido eliminado con exito.");
+                    break;
+                case "2":
+                    
+                    System.out.println("Operacion cancelada.");
+                    break;
+                default:
+                    
+                    System.out.println("No se ingreso una opcion valida.");
+                    break;
+            }
+        }
+    };
 
     public static void main(String[] args) {
         createClient();
         readClient();
         updateClient();
+        readClient();
+        deleteClient();
         readClient();
     }
 }
